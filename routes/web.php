@@ -37,6 +37,10 @@ Route::post('/forum/detail/{forum}', [ForumController::class, 'addComment'])->mi
 // Kursus
 Route::get('/kursus', [CourseActivityController::class, 'index']);
 Route::get('/kursus/detail/{course}', [CourseActivityController::class, 'detail']);
+Route::get('/kursus/detail/{course}/join', [CourseActivityController::class, 'joinCourse']);
+Route::get('/kursus/{course}', [CourseActivityController::class, 'courseMateri']);
+Route::get('/kursus/{course}/{detail}/next', [CourseActivityController::class, 'nextMateri']);
+Route::get('/kursus/{course}/{detail}', [CourseActivityController::class, 'courseMateriDetail']);
 
 // Harus Login dulu
 Route::group(['middleware' => ['auth']], function () {
