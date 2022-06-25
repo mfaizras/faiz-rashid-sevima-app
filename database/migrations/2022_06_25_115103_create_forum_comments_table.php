@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('forum_comments', function (Blueprint $table) {
             $table->id();
             $table->string('comment_id');
+            $table->string('user_id');
             $table->text('comment_content');
             $table->enum('comment_type', ['toForum', 'toComment']);
             $table->timestamps();

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CourseActivityController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +28,15 @@ Route::post('/register', [RegisterController::class, 'store']);
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
+
+// Forum
+Route::get('/forum', [ForumController::class, 'index']);
+Route::get('/forum/detail/{forum}', [ForumController::class, 'show']);
+Route::post('/forum/detail/{forum}', [ForumController::class, 'addComment'])->middleware('auth');
+
+// Kursus
+Route::get('/kursus', [CourseActivityController::class, 'index']);
+Route::get('/kursus/detail/{course}', [CourseActivityController::class, 'detail']);
 
 // Harus Login dulu
 Route::group(['middleware' => ['auth']], function () {
