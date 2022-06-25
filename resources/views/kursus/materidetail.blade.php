@@ -21,8 +21,6 @@
                     <p>{{ $details->course_content }}</p>
 
 
-                    <a href="/kursus/{{ $datas->id }}/{{ $details->id }}/next"
-                        class="btn btn-primary rounded-pill container-fluid">Lanjutkan</a>
 
                 </div>
             </div>

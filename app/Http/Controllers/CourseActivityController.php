@@ -77,29 +77,22 @@ class CourseActivityController extends Controller
         }
     }
 
-    public function nextMateri(Course $course, CourseDetail $detail)
+    public function create()
     {
+        return view('kursus.create');
+    }
 
-        $checkUser = UserCourseActivity::all()->where('user_id', auth()->user()->id)->where('status', '==', 'completed');
-        $courseList = CourseDetail::all();
-        UserCourseActivity::create([
-            'course_id' => $detail->id,
-            'user_id' => auth()->user()->id,
-            'status' => 'completed'
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'course_name' => 'required',
+            'curse_description' => 'required'
         ]);
-        foreach ($courseList as $list) {
-            foreach ($checkUser as $check) {
-                if ($list->id != $check->course_id && $list->course_id == $course->id) {
+        $validatedData['creator'] = auth()->user()->id;
+        $validatedData['visibility'] = $request['visibility'];
 
-                    return redirect('/kursus/' . $course->id . '/' . $list->course_id);
-                }
-            }
-        }
+        Course::create($validatedData);
 
-
-
-
-        // dd($courseList);
-        // return redirect('/kursus/' . $course->id . '/' . $courseList[0]->id);
+        return redirect('/mycourse');
     }
 }

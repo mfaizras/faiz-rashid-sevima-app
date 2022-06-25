@@ -38,4 +38,22 @@ class ForumController extends Controller
 
         return redirect('/forum/detail/' . $validatedData['comment_id']);
     }
+
+    public function create()
+    {
+        return view('forum.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'forum_content' => 'required'
+        ]);
+        $validatedData['user_id'] = auth()->user()->id;
+
+        Forum::create($validatedData);
+
+        return redirect('/forum');
+    }
 }

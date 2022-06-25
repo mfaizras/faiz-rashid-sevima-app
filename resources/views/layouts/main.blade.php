@@ -14,6 +14,15 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/trix.css">
+    <script type="text/javascript" src="/assets/trix.js"></script>
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -36,9 +45,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/forum">Forum</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/class">Kelas</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">

@@ -3,7 +3,8 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title mb-3">{{ $datas->title }}</h3>
+            <h3 class="card-title">{{ $datas->title }}</h3>
+            <small class="text-muted mb-3">Dibuat oleh {{ $datas->user->name }}</small>
             <p>{!! $datas->forum_content !!}</p>
 
         </div>
