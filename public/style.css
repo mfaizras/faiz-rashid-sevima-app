@@ -1,0 +1,55 @@
+* {
+  --primary: #0b3954;
+  --secondary: #087e8b;
+  --tersier: #ff5a5f;
+  --tersiery: #c81d25;
+}
+body {
+  background-color: #fafafae0;
+}
+
+.bg-green {
+  background-color: #04e762;
+}
+
+.bg-pr {
+  background-color: var(--primary);
+}
+
+.bg-pr2 {
+  background-color: var(--secondary);
+}
+
+.bg-pr3 {
+  background-color: var(--tersier);
+}
+
+.bg-pr4 {
+  background-color: var(--tersiery);
+}
+
+.profile-navbar-img {
+  width: 40px;
+  height: 40px;
+  padding: -6px;
+}
+
+/* Card */
+.info-card-icon {
+  font-size: 50px;
+}
+.info-card-text {
+  font-size: 2vw;
+}
+
+@media screen and (max-width: 1200px) {
+  .info-card-text {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .info-card-text {
+    font-size: 30px;
+  }
+}
