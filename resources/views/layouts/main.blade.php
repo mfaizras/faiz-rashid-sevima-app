@@ -55,7 +55,7 @@
                                 <img src="/avatar.png" class="profile-navbar-img rounded-pill" alt="" />
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="/mycourse">Kursus Saya</a></li>
                                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             </ul>
                         </li>

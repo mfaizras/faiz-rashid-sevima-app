@@ -20,28 +20,20 @@ class CourseActivityController extends Controller
     public function detail(Course $course)
     {
         $courseDetail = CourseDetail::all()->where('course_id', $course->id);
-        $courseCheck = CourseActivity::all()->where('course_id', $course->id)->where('user_id', auth()->user()->id);
+        $courseCheck = CourseActivity::where('course_id', $course->id)->where('user_id', auth()->user()->id)->get();
 
 
-        if (!$courseCheck || $courseCheck[0]['status'] == 'not_joined') {
-            return view('kursus.detail', [
-                'datas' => $course,
-                'details' => $courseDetail
-            ]);
-        } else {
-            if ($courseCheck[0]['status'] == 'joined') {
-                return redirect('/kursus/' . $course);
-            } else {
-                return redirect('/kursus');
-            }
-        }
+        return view('kursus.detail', [
+            'datas' => $course,
+            'details' => $courseDetail
+        ]);
     }
 
     public function joinCourse(Course $course)
     {
-        $courseCheck = CourseActivity::all()->where('course_id', $course->id)->where('user_id', auth()->user()->id);
+        $courseCheck = CourseActivity::where('course_id', $course->id)->where('user_id', auth()->user()->id)->get();
 
-        if (!$courseCheck || $courseCheck[0]['status'] == 'not_joined') {
+        if (!isset($courseCheck['status']) || $courseCheck['status'] == 'not_joined') {
             CourseActivity::create([
                 'user_id' => auth()->user()->id,
                 'course_id' => $course->id,
@@ -86,7 +78,7 @@ class CourseActivityController extends Controller
     {
         $validatedData = $request->validate([
             'course_name' => 'required',
-            'curse_description' => 'required'
+            'course_description' => 'required'
         ]);
         $validatedData['creator'] = auth()->user()->id;
         $validatedData['visibility'] = $request['visibility'];
@@ -94,5 +86,18 @@ class CourseActivityController extends Controller
         Course::create($validatedData);
 
         return redirect('/mycourse');
+    }
+
+    public function courselist()
+    {
+        return view('kursus.list', [
+            'datas' => Course::where('creator', auth()->user()->id)->get()
+
+        ]);
+    }
+
+    public function courses()
+    {
+        return view('kursus.edit');
     }
 }
