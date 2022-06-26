@@ -47,6 +47,13 @@ Route::group(['middleware' => ['auth']], function () {
     // logout
     Route::get('/logout', [LoginController::class, 'logout']);
 
+
+    // Forum
+    Route::get('/forum/detail/{forum}', [ForumController::class, 'show']);
+    Route::post('/forum/detail/{forum}', [ForumController::class, 'addComment']);
+    Route::get('/forum/create', [ForumController::class, 'create']);
+    Route::post('/forum/create', [ForumController::class, 'store']);
+
     // Kursus
     Route::get('/kursus/detail/{course}', [CourseActivityController::class, 'detail']);
     Route::get('/kursus/detail/{course}/join', [CourseActivityController::class, 'joinCourse']);
@@ -59,10 +66,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/mycourse/{courseid}/{courseDetail}', [KursusResource::class, 'update']);
     Route::get('/mycourse/{courseid}/{courseDetail}/destroy', [KursusResource::class, 'destroy']);
     Route::resource('/mycourse/{courseid}', KursusResource::class);
-
-    // Forum
-    Route::get('/forum/detail/{forum}', [ForumController::class, 'show']);
-    Route::post('/forum/detail/{forum}', [ForumController::class, 'addComment'])->middleware('auth');
-    Route::get('/forum/create', [ForumController::class, 'create']);
-    Route::post('/forum/create', [ForumController::class, 'store']);
 });
